@@ -1,12 +1,16 @@
 defmodule Deeplixir do
+  @moduledoc """
+  Main module, provide the translate function
+  """
 
+@doc """
+Return a string with the translation
 
-  def sample(:name, values \\ %{lang: "en"}) do
-    IO.puts(values[:lang])
-  end
+ex
 
-
-
+iex> Deeplixir.translate("how old are you?",:ES)
+"¿Cuántos años tienes?"
+"""
   def translate(text, target_lang, source_lang \\ :auto) do
     with {:ok,text} <- Validator.validate_text(text),
          {:ok,source} <- Validator.validate_source_language(source_lang),

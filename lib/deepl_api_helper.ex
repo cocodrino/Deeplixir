@@ -1,4 +1,8 @@
 defmodule DeeplApiHelper do
+  @moduledoc """
+  include the body which is send to deepl and the http client request function, right now
+  this module is really basic because only include the json for make short text translations
+  """
   @deepl_hostname "https://www2.deepl.com"
   @deepl_endpoint "/jsonrpc"
 
@@ -25,7 +29,9 @@ defmodule DeeplApiHelper do
     )
   end
 
-
+@doc """
+this function make the http request and decode the json response, extracting the translation
+"""
   def make_request(text,target,source,beginning \\ 1) do
     builded_body = build_json_body(text,target,source,beginning)
     with {:ok,response} <- HTTPoison.post(@deepl_hostname <> @deepl_endpoint,builded_body,
