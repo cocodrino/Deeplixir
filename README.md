@@ -18,13 +18,13 @@ end
 
 Deeplixir.translate("hola cómo estás",:EN,:ES)
 
-# "Hello, how are you?"
+# {:ok, "Hello, how are you?"}
 
 #you don't need set the source language if you type a long phrase
 
 Deeplixir.translate("how old are you?",:ES)
 
-#"¿Cuántos años tienes?"
+# {:ok, "¿Cuántos años tienes?"}
 #
 
 ```

@@ -38,7 +38,7 @@ this function make the http request and decode the json response, extracting the
                           [{"Content-Type", "application/json"}, {"Cache-Control","no-cache"}]),
          %{body: body, status_code: 200} <- response
     do
-       body
+       result=body
         |>Poison.decode!()
         |> get_in(["result","translations"])
         |> Enum.at(0)|>Map.get("beams")
@@ -46,8 +46,9 @@ this function make the http request and decode the json response, extracting the
         |>Enum.at(0)
         |>Map.get("postprocessed_sentence")
         |>(&Regex.run(~r/\d+. (.+)/,&1)).()|>Enum.at(1)
+        {:ok,result}
     else
-      error -> "error #{error}"
+      error -> {:error,"error #{error}"}
     end
 
     #, {"Content-Length", byte_size(body)}
