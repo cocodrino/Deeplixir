@@ -8,7 +8,7 @@
 ```elixir
 def deps do
   [
-    {:deeplixir, "~> 0.1.0"}
+    {:deeplixir, "~> 0.1.1"}
   ]
 end
 ```
