@@ -4,4 +4,4 @@
               {modules,['Elixir.DeeplApiHelper','Elixir.Deeplixir',
                         'Elixir.Validator']},
               {registered,[]},
-              {vsn,"0.1.1"}]}.
+              {vsn,"0.1.2"}]}.
