@@ -1,4 +1,5 @@
 defmodule DeeplApiHelper do
+
   @moduledoc """
   include the body which is send to deepl and the http client request function, right now
   this module is really basic because only include the json for make short text translations
@@ -51,8 +52,10 @@ defmodule DeeplApiHelper do
         |> Enum.sort(&(&1["score"] < &2["score"]))
         |> Enum.at(0)
         |> Map.get("postprocessed_sentence")
-        |> (&Regex.run(~r/\d+. (.+)/, &1)).()
-        |> Enum.at(1)
+        |> (&Regex.replace(~r/^\d+\)\s*/,&1,"")).()
+        |> (&Regex.replace(~r/^\d+\.\s*/,&1,"")).()
+
+
 
       {:ok, result}
     else
