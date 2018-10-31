@@ -51,9 +51,10 @@ defmodule DeeplApiHelper do
         |> Map.get("beams")
         |> Enum.sort(&(&1["score"] < &2["score"]))
         |> Enum.at(0)
+        |>IO.inspect(label: "1")
         |> Map.get("postprocessed_sentence")
         |> (&Regex.replace(~r/^\d+\)\s*/,&1,"")).()
-        |> (&Regex.replace(~r/^\d+\.\s*/,&1,"")).()
+        |> (&Regex.replace(~r/\d+\.\s*/,&1,"")).()
 
 
 
