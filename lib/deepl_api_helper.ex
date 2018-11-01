@@ -54,7 +54,7 @@ defmodule DeeplApiHelper do
         |>IO.inspect(label: "1")
         |> Map.get("postprocessed_sentence")
         |> (&Regex.replace(~r/^\d+\)\s*/,&1,"")).()
-        |> (&Regex.replace(~r/\d+\.\s*/,&1,"")).()
+        |> (&Regex.replace(~r/\d+\.*\s*/,&1,"")).()
 
 
 
