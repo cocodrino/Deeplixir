@@ -35,6 +35,7 @@ defmodule DeeplApiHelper do
   this function make the http request and decode the json response, extracting the translation
   """
   def make_request(text, target, source, beginning \\ 1) do
+    text = text|> (&Regex.replace(~r/\./,&1,",")).() #ugly temporary solution, deepl just allow one oration for translation
     builded_body = build_json_body(text, target, source, beginning)
 
     with {:ok, response} <-
@@ -54,6 +55,7 @@ defmodule DeeplApiHelper do
         |>IO.inspect(label: "1")
         |> Map.get("postprocessed_sentence")
         |> (&Regex.replace(~r/\d+[\)|\.]*\s*/,&1,"")).()
+
 
 
 
